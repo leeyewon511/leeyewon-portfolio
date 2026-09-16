@@ -1,8 +1,15 @@
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+
 function App() {
   return (
-    <main>
-      <h1>React 포트폴리오를 시작합니다.</h1>
-    </main>
+    <div>
+      <Navbar />
+
+      <main id="top">
+        <Hero />
+      </main>
+    </div>
   );
 }
 
