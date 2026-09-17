@@ -1,0 +1,143 @@
+.about-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 140px 24px 120px;
+  background: #0c0c0c;
+  color: #d7e2ea;
+}
+
+.about-container {
+  width: min(100%, 960px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+.about-label {
+  margin-bottom: 18px;
+  color: #b600a8;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+
+/* ABOUT ME 제목 */
+.about-title {
+  margin: 0;
+
+  color: #aeb8c1;
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.07em;
+  text-align: center;
+
+  background: linear-gradient(
+    180deg,
+    #77808a 0%,
+    #d4dce2 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+/* 이름과 학생 신분 */
+.about-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 42px;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+.about-profile strong {
+  font-weight: 700;
+}
+
+.about-profile span {
+  color: #b600a8;
+}
+
+.about-profile em {
+  color: #b600a8;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* 자기소개 본문 */
+.about-description {
+  width: min(100%, 780px);
+  margin: 48px auto 0;
+
+  color: rgba(215, 226, 234, 0.82);
+  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  word-break: keep-all;
+}
+
+
+/* 태블릿 */
+@media (max-width: 900px) {
+  .about-section {
+    padding: 120px 32px 100px;
+  }
+
+  .about-container {
+    width: 100%;
+  }
+
+  .about-title {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+  }
+
+  .about-description {
+    width: 100%;
+    font-size: 1.05rem;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+  .about-section {
+    min-height: auto;
+    padding: 100px 20px 90px;
+  }
+
+  .about-label {
+    font-size: 10px;
+  }
+
+  .about-title {
+    font-size: 18vw;
+    line-height: 0.95;
+    letter-spacing: -0.08em;
+  }
+
+  .about-profile {
+    gap: 7px;
+    margin-top: 32px;
+    font-size: 14px;
+  }
+
+  .about-description {
+    margin-top: 36px;
+    font-size: 0.98rem;
+    line-height: 1.9;
+  }
+}
