@@ -1,0 +1,445 @@
+.projects-section {
+  position: relative;
+
+  /*
+    프로젝트 5개가 너무 멀리 떨어지지 않도록
+    프로젝트 하나당 약 82vh의 스크롤 구간을 사용합니다.
+  */
+  min-height: calc(var(--project-count) * 82vh);
+
+  background: #0c0c0c;
+  color: #d7e2ea;
+}
+
+.projects-sticky {
+  position: sticky;
+  top: 0;
+
+  height: 100vh;
+  min-height: 720px;
+  padding: 78px 0 28px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* Projects 섹션 제목 */
+.projects-heading {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.projects-label {
+  color: #b600a8;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.projects-heading h2 {
+  margin-top: 6px;
+  transform: translateY(-8px);
+
+  color: #d7e2ea;
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.08em;
+}
+
+.projects-description {
+  margin-top: 28px;
+
+  color: rgba(215, 226, 234, 0.62);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 프로젝트가 움직이는 영역 */
+.projects-viewport {
+  width: 100%;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+/* 프로젝트를 가로로 배치 */
+.projects-track {
+  display: flex;
+  width: max-content;
+
+  will-change: transform;
+  transition: transform 0.08s linear;
+}
+
+/* 프로젝트 한 장 */
+.project-slide {
+  width: 100vw;
+  padding: 0 24px;
+  flex: 0 0 100vw;
+}
+
+/* 프로젝트 제목 */
+.project-slide-heading {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding-bottom: 16px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.project-category {
+  color: #b600a8;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-slide-heading h3 {
+  max-width: 760px;
+  margin-top: 8px;
+
+  color: #ffffff;
+  font-size: clamp(1.8rem, 3.4vw, 3.6rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  word-break: keep-all;
+}
+
+.project-page-number {
+  flex-shrink: 0;
+
+  color: rgba(215, 226, 234, 0.4);
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+/* 프로젝트 제목 아래의 미디어 + 설명 */
+.project-content {
+  width: min(100%, 1180px);
+  min-height: 390px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+  gap: 30px;
+  align-items: stretch;
+
+  padding: 22px;
+
+  border: 1px solid rgba(215, 226, 234, 0.18);
+  border-radius: 28px;
+  background: #121316;
+}
+
+/* 왼쪽 이미지 또는 영상 */
+.project-media-frame {
+  width: 100%;
+  min-height: 346px;
+
+  overflow: hidden;
+  border: 1px dashed rgba(215, 226, 234, 0.28);
+  border-radius: 21px;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(182, 0, 168, 0.18),
+      transparent 42%
+    ),
+    #0e0f11;
+}
+
+.project-media-frame img,
+.project-media-frame video {
+  width: 100%;
+  height: 100%;
+  min-height: 346px;
+
+  display: block;
+  object-fit: cover;
+}
+
+.project-media-frame video {
+  background: #000000;
+}
+
+.project-media-placeholder {
+  width: 100%;
+  min-height: 346px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.media-placeholder-label {
+  margin-bottom: 14px;
+
+  color: #b600a8;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+.project-media-placeholder p {
+  color: rgba(215, 226, 234, 0.48);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* 오른쪽 프로젝트 설명 */
+.project-details {
+  min-height: 346px;
+  padding: 8px 4px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-detail-label {
+  color: #b600a8;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.project-text {
+  max-width: 560px;
+  margin-top: 14px;
+
+  color: rgba(215, 226, 234, 0.72);
+  font-size: 14px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.project-info-list {
+  display: grid;
+  gap: 9px;
+  margin-top: 20px;
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(215, 226, 234, 0.14);
+}
+
+.project-info-item {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.project-info-item span {
+  color: rgba(215, 226, 234, 0.4);
+  font-family: monospace;
+  font-size: 10px;
+}
+
+.project-info-item strong {
+  color: rgba(215, 226, 234, 0.75);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.project-detail-block {
+  margin-top: 16px;
+}
+
+.project-detail-block > p:last-child {
+  max-width: 560px;
+  margin-top: 7px;
+
+  color: rgba(215, 226, 234, 0.58);
+  font-size: 11px;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.project-tags span {
+  padding: 6px 9px;
+
+  border: 1px solid rgba(215, 226, 234, 0.18);
+  border-radius: 999px;
+
+  color: rgba(215, 226, 234, 0.62);
+  font-family: monospace;
+  font-size: 10px;
+}
+
+/* 하단 스크롤 진행 표시 */
+.projects-scroll-guide {
+  width: min(100%, 1180px);
+  margin: 18px auto 0;
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  color: rgba(215, 226, 234, 0.38);
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.projects-scroll-line {
+  position: relative;
+
+  width: 150px;
+  height: 2px;
+
+  overflow: hidden;
+  background: rgba(215, 226, 234, 0.2);
+}
+
+.projects-scroll-progress {
+  width: 0;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #b600a8,
+    #7621b0,
+    #e65ce0
+  );
+
+  transition: width 0.08s linear;
+}
+
+/* 태블릿 */
+@media (max-width: 900px) {
+  .projects-sticky {
+    min-height: 680px;
+  }
+
+  .project-content {
+    grid-template-columns: minmax(230px, 0.85fr) minmax(0, 1.15fr);
+    gap: 22px;
+    padding: 18px;
+  }
+
+  .project-media-frame,
+  .project-media-placeholder,
+  .project-media-frame img,
+  .project-media-frame video {
+    min-height: 300px;
+  }
+
+  .project-details {
+    min-height: 300px;
+  }
+
+  .project-text {
+    font-size: 12px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 700px) {
+  .projects-section {
+    min-height: auto !important;
+  }
+
+  .projects-sticky {
+    position: relative;
+
+    height: auto;
+    min-height: auto;
+    padding: 100px 0 90px;
+  }
+
+  .projects-heading {
+    padding: 0 20px;
+  }
+
+  .projects-heading h2 {
+    margin-top: 4px;
+    transform: translateY(-4px);
+    font-size: 18vw;
+    line-height: 0.85;
+  }
+
+  .projects-description {
+    margin-top: 24px;
+    font-size: 13px;
+  }
+
+  .projects-viewport {
+    margin-top: 48px;
+    overflow: visible;
+  }
+
+  .projects-track {
+    width: 100%;
+    display: block;
+    transform: none !important;
+  }
+
+  .project-slide {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .project-slide + .project-slide {
+    margin-top: 48px;
+  }
+
+  .project-slide-heading {
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 16px;
+  }
+
+  .project-slide-heading h3 {
+    font-size: 2.1rem;
+    line-height: 1;
+  }
+
+  .project-content {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    min-height: auto;
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .project-media-frame,
+  .project-media-placeholder,
+  .project-media-frame img,
+  .project-media-frame video {
+    min-height: 360px;
+  }
+
+  .project-details {
+    min-height: auto;
+    padding: 4px 2px 10px;
+  }
+
+  .projects-scroll-guide {
+    display: none;
+  }
+}
