@@ -203,7 +203,73 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+function vitePluginVideoServer(): Plugin {
+  return {
+    name: "video-server-plugin",
+    configureServer(server: ViteDevServer) {
+      server.middlewares.use((req, res, next) => {
+        const decodedUrl = decodeURIComponent(req.url || "");
+        if (decodedUrl.startsWith("/videos/")) {
+          const fileName = decodedUrl.replace(/^\/videos\//, "").split("?")[0];
+          const videoPath = path.resolve(import.meta.dirname, "client", "public", "videos", fileName);
+
+          if (fs.existsSync(videoPath) && fs.statSync(videoPath).isFile()) {
+            const stat = fs.statSync(videoPath);
+            const fileSize = stat.size;
+            const range = req.headers.range;
+
+            const isImage = /\.(png|jpe?g|gif|webp|svg)$/i.test(fileName);
+            const contentType = isImage
+              ? fileName.endsWith(".png")
+                ? "image/png"
+                : fileName.endsWith(".webp")
+                ? "image/webp"
+                : "image/jpeg"
+              : "video/mp4";
+
+            if (!isImage && range) {
+              const parts = range.replace(/bytes=/, "").split("-");
+              const start = parseInt(parts[0], 10);
+              const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+              const chunksize = end - start + 1;
+              const file = fs.createReadStream(videoPath, { start, end });
+
+              res.writeHead(206, {
+                "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+                "Accept-Ranges": "bytes",
+                "Content-Length": chunksize,
+                "Content-Type": contentType,
+                "Cache-Control": "public, max-age=3600",
+              });
+              file.pipe(res);
+              return;
+            } else {
+              res.writeHead(200, {
+                "Content-Length": fileSize,
+                "Content-Type": contentType,
+                "Accept-Ranges": "bytes",
+                "Cache-Control": "public, max-age=3600",
+              });
+              fs.createReadStream(videoPath).pipe(res);
+              return;
+            }
+          }
+        }
+        next();
+      });
+    },
+  };
+}
+
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  vitePluginVideoServer(),
+  vitePluginManusRuntime(),
+  vitePluginManusDebugCollector(),
+  vitePluginStorageProxy(),
+];
 
 export default defineConfig({
   plugins,
@@ -216,6 +282,7 @@ export default defineConfig({
   },
   envDir: path.resolve(import.meta.dirname),
   root: path.resolve(import.meta.dirname, "client"),
+  publicDir: path.resolve(import.meta.dirname, "client", "public"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
@@ -236,6 +303,10 @@ export default defineConfig({
     fs: {
       strict: true,
       deny: ["**/.*"],
+    },
+    watch: {
+      // 영상 파일은 용량이 크고 OneDrive 잠금으로 EBUSY 오류가 발생하므로 감시에서 제외
+      ignored: ["**/public/videos/**"],
     },
   },
 });

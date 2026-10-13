@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FadeIn } from "./FadeIn";
 import { PROJECTS_DATA, ProjectItem } from "../../data/projectData";
-import { Github, Server, Database, ShieldCheck, Cpu, Terminal, Sparkles, Layers, Film } from "lucide-react";
+import { Github, Server, Database, ShieldCheck, Cpu, Terminal, Sparkles, Layers, Film, ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 const TechVisualCard: React.FC<{
   title: string;
@@ -59,185 +59,250 @@ const ProjectCard: React.FC<{
   totalCards: number;
 }> = ({ project, index, totalCards }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeMediaIdx, setActiveMediaIdx] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "start start"]
+    offset: ["start end", "start start"],
   });
 
-  const targetScale = 1 - (totalCards - 1 - index) * 0.04;
+  const targetScale = 1 - (totalCards - 1 - index) * 0.035;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+
+  const mediaList = project.mediaList || [];
+  const currentMedia = mediaList[activeMediaIdx] || mediaList[0];
 
   return (
     <div
       ref={containerRef}
-      className="sticky top-20 md:top-28 w-full min-h-[65vh] flex items-center justify-center py-6"
+      className="sticky top-20 md:top-24 w-full min-h-[75vh] flex items-center justify-center py-6"
       style={{
-        top: `calc(5rem + ${index * 26}px)`
+        top: `calc(4.5rem + ${index * 26}px)`,
       }}
     >
       <motion.div
         style={{ scale }}
-        className="w-full max-w-5xl rounded-[32px] sm:rounded-[44px] md:rounded-[52px] border-2 border-[#D7E2EA]/25 bg-[#0F1014]/95 backdrop-blur-2xl p-5 sm:p-7 md:p-9 shadow-[0_30px_70px_rgba(0,0,0,0.9)] flex flex-col justify-between"
+        className="w-full max-w-6xl rounded-[32px] sm:rounded-[40px] border-2 border-[#D7E2EA]/20 bg-[#0F1014]/95 backdrop-blur-2xl p-6 sm:p-8 md:p-10 shadow-[0_30px_70px_rgba(0,0,0,0.9)] flex flex-col gap-6"
       >
-        {/* Top Row: Index, Name, Meta, and Actions */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#D7E2EA]/15">
-          <div className="flex items-center gap-4">
-            <span className="font-black text-[clamp(2.4rem,4.5vw,64px)] text-[#D7E2EA] leading-none tracking-tighter select-none">
+        {/* Top Header: Project Index & Category & Actions */}
+        <div className="flex items-center justify-between pb-4 border-b border-[#D7E2EA]/15">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-2xl sm:text-3xl font-black text-[#D7E2EA]">
               {project.number}
             </span>
-            <div className="flex flex-col">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#B600A8] font-semibold">
-                {project.category}
-              </span>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase text-white tracking-tight">
-                {project.name}
-              </h3>
-            </div>
+            <span className="text-xs font-mono uppercase tracking-widest text-[#B600A8] font-semibold bg-[#B600A8]/10 px-3 py-1 rounded-full border border-[#B600A8]/30">
+              {project.category}
+            </span>
           </div>
 
           <div className="flex items-center gap-3">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-[#D7E2EA]/30 flex items-center justify-center text-[#D7E2EA] hover:bg-white/10 hover:text-white transition-all"
-                title="GitHub Repository"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-            )}
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-[#D7E2EA]/25 px-4 py-2 text-[10px] sm:text-xs font-mono uppercase tracking-wider text-[#D7E2EA]/55">
-              <Film className="w-3.5 h-3.5" />
-              Media Coming Soon
+            <span className="text-xs font-mono text-[#D7E2EA]/60">
+              {project.period}
             </span>
           </div>
         </div>
 
-        {/* Middle: Summary & Tech Stack Tags */}
-        <div className="my-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <p className="text-xs sm:text-sm text-[#D7E2EA]/85 max-w-2xl font-normal leading-relaxed">
-            {project.summary}
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {project.techStack.map((tech, tIdx) => (
-              <span
-                key={tIdx}
-                className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-[#18191E] border border-[#D7E2EA]/15 text-[#D7E2EA]"
-              >
-                {tech}
-              </span>
-            ))}
+        {/* Main Content Grid: Left Media & Title/Tags, Right Structured Report */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column (5 cols): Media Display + Project Title + Tech Badges */}
+          <div className="lg:col-span-5 flex flex-col gap-5">
+            {/* Primary Media Box with Interactive Navigation Overlay */}
+            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-[#18191E] border border-[#D7E2EA]/20 shadow-inner flex items-center justify-center group">
+              {currentMedia ? (
+                currentMedia.type === "video" ? (
+                  <video
+                    key={currentMedia.src}
+                    src={encodeURI(currentMedia.src)}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <img
+                    src={currentMedia.src}
+                    alt={currentMedia.caption || project.name}
+                    className="w-full h-full object-contain p-2"
+                  />
+                )
+              ) : (
+                <div className="flex flex-col items-center gap-2 text-[#D7E2EA]/40">
+                  <Film className="w-8 h-8" />
+                  <span className="text-xs font-mono">미디어 준비 중</span>
+                </div>
+              )}
+
+              {/* Prev / Next Floating Arrows for intuitive video flipping */}
+              {mediaList.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveMediaIdx((prev) => (prev > 0 ? prev - 1 : mediaList.length - 1));
+                    }}
+                    className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-[#B600A8] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all opacity-85 hover:opacity-100 hover:scale-105 shadow-lg z-20"
+                    title="이전 미디어"
+                    aria-label="이전 영상 보기"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveMediaIdx((prev) => (prev < mediaList.length - 1 ? prev + 1 : 0));
+                    }}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-[#B600A8] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all opacity-85 hover:opacity-100 hover:scale-105 shadow-lg z-20"
+                    title="다음 미디어"
+                    aria-label="다음 영상 보기"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
+
+              {/* Top Counter Pill (e.g. 1 / 3) */}
+              {mediaList.length > 1 && (
+                <div className="absolute top-2.5 right-2.5 bg-black/65 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15 text-[10px] font-mono text-white/90 font-medium z-10 flex items-center gap-1.5">
+                  <Play className="w-2.5 h-2.5 fill-current text-[#B600A8]" />
+                  <span>{activeMediaIdx + 1} / {mediaList.length}</span>
+                </div>
+              )}
+
+              {/* Bottom Caption & Dot Navigation */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-6 pb-2.5 px-3 z-10 flex flex-col gap-2">
+                {currentMedia?.caption && (
+                  <div className="text-[11px] font-mono text-[#D7E2EA] font-medium truncate text-center">
+                    {currentMedia.caption}
+                  </div>
+                )}
+                {mediaList.length > 1 && (
+                  <div className="flex items-center justify-center gap-1.5">
+                    {mediaList.map((_, dotIdx) => (
+                      <button
+                        key={dotIdx}
+                        onClick={() => setActiveMediaIdx(dotIdx)}
+                        className={`h-1.5 rounded-full transition-all ${
+                          activeMediaIdx === dotIdx
+                            ? "w-6 bg-[#B600A8]"
+                            : "w-2 bg-white/40 hover:bg-white/80"
+                        }`}
+                        title={`${dotIdx + 1}번 미디어로 이동`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Project Title & Period */}
+            <div>
+              <h3 className="text-lg sm:text-xl lg:text-[1.35rem] font-black text-white tracking-tight break-keep leading-snug">
+                {project.name}
+              </h3>
+              <p className="mt-1 text-xs font-mono text-[#D7E2EA]/60">
+                {project.period}
+              </p>
+            </div>
+
+            {/* Tech Stack Badges */}
+            <div className="flex flex-wrap gap-1.5">
+              {project.techStack.map((tech, tIdx) => (
+                <span
+                  key={tIdx}
+                  className="px-3 py-1 rounded-full text-[11px] font-mono bg-[#1E2028] border border-[#D7E2EA]/20 text-[#D7E2EA] font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Reserved media area for future project photos or videos */}
-        <div className="mb-4 flex items-center gap-3 rounded-2xl border border-dashed border-[#D7E2EA]/15 bg-white/[0.02] px-4 py-3 text-[#D7E2EA]/50">
-          <Film className="h-4 w-4 text-[#B600A8]/80" />
-          <span className="text-[11px] sm:text-xs font-mono">
-            이 프로젝트의 사진이나 영상을 나중에 추가할 수 있는 미디어 영역입니다.
-          </span>
-        </div>
+          {/* Right Column (7 cols): Reference-style Structured Information Box with Hanging Indent */}
+          <div className="lg:col-span-7 rounded-2xl bg-[#14151B] border border-[#D7E2EA]/15 p-5 sm:p-6 md:p-7 flex flex-col gap-6 text-[#D7E2EA] max-h-[580px] overflow-y-auto scrollbar-thin">
+            {/* 1. 프로젝트 개요 */}
+            <div>
+              <h4 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 mb-2">
+                <span className="text-[#B600A8] font-mono">1.</span> 프로젝트 개요
+              </h4>
+              <div className="pl-3 sm:pl-4 space-y-2 text-xs sm:text-sm">
+                <div className="font-semibold text-white/90">■ 목적</div>
+                <div className="space-y-1.5 text-[#D7E2EA]/85 pl-2">
+                  {project.overview.purpose.map((p, pIdx) => (
+                    <div key={pIdx} className="flex items-start gap-2 leading-relaxed">
+                      <span className="text-white/60 select-none flex-shrink-0 mt-0.5">-</span>
+                      <span className="flex-1 break-keep">{p}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-        {/* Bottom Row: 2-Column Responsive Visual Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 mt-2">
-          {/* Left Column: 2 stacked items */}
-          <div className="md:col-span-5 flex flex-col gap-3 sm:gap-4">
-            {project.id === "auth-saas" ? (
-              <>
-                <TechVisualCard
-                  title="JWT Token Signature & Rotation"
-                  subtitle="Security & Auth Practice"
-                  badge="Bearer Token"
-                  gradient="from-[#B600A8]/60 via-[#7621B0]/40 to-[#0C0C0C]/90"
-                  icon={<ShieldCheck className="w-4 h-4 text-[#FF85EA]" />}
-                  heightClass="h-[140px] sm:h-[160px]"
-                  techCode="sign({ uid, role }, SECRET, { expiresIn: '2h' })"
-                />
-                <TechVisualCard
-                  title="Docker Container Isolation"
-                  subtitle="Containerization & Env Setup"
-                  badge="Dockerfile"
-                  gradient="from-[#0077B6]/50 via-[#023E8A]/40 to-[#0C0C0C]/90"
-                  icon={<Cpu className="w-4 h-4 text-[#90E0EF]" />}
-                  heightClass="h-[140px] sm:h-[160px]"
-                  techCode="FROM node:20-alpine -> EXPOSE 3000"
-                />
-              </>
-            ) : project.id === "creative-interactive" ? (
-              <>
-                <TechVisualCard
-                  title="Figma Auto-Layout to React"
-                  subtitle="Component Composition"
-                  badge="Figma to Code"
-                  gradient="from-[#F72585]/50 via-[#7209B7]/40 to-[#0C0C0C]/90"
-                  icon={<Sparkles className="w-4 h-4 text-[#F72585]" />}
-                  heightClass="h-[140px] sm:h-[160px]"
-                  techCode="const ResponsiveFlex = ({ children }) => ..."
-                />
-                <TechVisualCard
-                  title="Framer Motion Physics"
-                  subtitle="Scroll & Magnetic Interactions"
-                  badge="Micro-interaction"
-                  gradient="from-[#4361EE]/50 via-[#3A0CA3]/40 to-[#0C0C0C]/90"
-                  icon={<Layers className="w-4 h-4 text-[#4CC9F0]" />}
-                  heightClass="h-[140px] sm:h-[160px]"
-                  techCode="useScroll({ target, offset: ['start', 'end'] })"
-                />
-              </>
-            ) : (
-              <>
-                <TechVisualCard
-                  title="MariaDB Relational Schema"
-                  subtitle="Relational Data Integrity"
-                  badge="SQL RDBMS"
-                  gradient="from-[#008080]/50 via-[#005F73]/40 to-[#0C0C0C]/90"
-                  icon={<Database className="w-4 h-4 text-[#94D2BD]" />}
-                  heightClass="h-[140px] sm:h-[160px]"
-                  techCode="CREATE INDEX idx_user ON tx_logs(user_id)"
-                />
-                <TechVisualCard
-                  title="SQLite Local In-Memory Cache"
-                  subtitle="Lightweight File Storage"
-                  badge="Embedded DB"
-                  gradient="from-[#DDA15E]/50 via-[#BC6C25]/40 to-[#0C0C0C]/90"
-                  icon={<Server className="w-4 h-4 text-[#FFE6A7]" />}
-                  heightClass="h-[140px] sm:h-[160px]"
-                  techCode="sqlite3.Database(':memory:') -> Fast I/O"
-                />
-              </>
-            )}
+            {/* 2. 주요 기능 및 특징 */}
+            <div>
+              <h4 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 mb-2">
+                <span className="text-[#B600A8] font-mono">2.</span> 주요 기능 및 특징
+              </h4>
+              <div className="pl-3 sm:pl-4 space-y-3.5 text-xs sm:text-sm">
+                {project.featuresList.map((feat, fIdx) => (
+                  <div key={fIdx} className="space-y-1.5">
+                    <div className="font-semibold text-white/90">■ {feat.title}</div>
+                    <div className="space-y-1.5 text-[#D7E2EA]/85 pl-2">
+                      {feat.points.map((pt, ptIdx) => (
+                        <div key={ptIdx} className="flex items-start gap-2 leading-relaxed">
+                          <span className="text-white/60 select-none flex-shrink-0 mt-0.5">-</span>
+                          <span className="flex-1 break-keep">{pt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 3. 본인 참여 내용 */}
+            <div>
+              <h4 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 mb-2">
+                <span className="text-[#B600A8] font-mono">3.</span> 본인 참여 내용
+              </h4>
+              <div className="pl-3 sm:pl-4 space-y-3.5 text-xs sm:text-sm">
+                {project.myRoleSection.map((role, rIdx) => (
+                  <div key={rIdx} className="space-y-1.5">
+                    <div className="font-semibold text-white/90">
+                      ■ {role.part}
+                      {role.percentage ? ` (${role.percentage})` : ""}
+                    </div>
+                    <div className="space-y-1.5 text-[#D7E2EA]/85 pl-2">
+                      {role.details.map((dt, dtIdx) => (
+                        <div key={dtIdx} className="flex items-start gap-2 leading-relaxed">
+                          <span className="text-white/60 select-none flex-shrink-0 mt-0.5">-</span>
+                          <span className="flex-1 break-keep">{dt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 4. 마무리 */}
+            <div>
+              <h4 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 mb-2">
+                <span className="text-[#B600A8] font-mono">4.</span> 마무리 및 느낀점
+              </h4>
+              <div className="pl-3 sm:pl-4 space-y-2 text-xs sm:text-sm">
+                <div className="font-semibold text-white/90">■ 느낀점</div>
+                <div className="space-y-1.5 text-[#D7E2EA]/85 pl-2">
+                  {project.conclusion.learnings.map((c, cIdx) => (
+                    <div key={cIdx} className="flex items-start gap-2 leading-relaxed">
+                      <span className="text-white/60 select-none flex-shrink-0 mt-0.5">-</span>
+                      <span className="flex-1 break-keep">{c}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-
-          {/* Right Column: 1 tall visual card */}
-          <div className="md:col-span-7">
-            <TechVisualCard
-              title={`${project.name} - End-to-End Pipeline`}
-              subtitle="Technical Practice Overview"
-              badge="System Diagram"
-              gradient={
-                project.id === "auth-saas"
-                  ? "from-[#7621B0]/60 via-[#B600A8]/40 to-[#0C0C0C]/95"
-                  : project.id === "creative-interactive"
-                  ? "from-[#B600A8]/50 via-[#BE4C00]/40 to-[#0C0C0C]/95"
-                  : "from-[#0A9396]/50 via-[#005F73]/40 to-[#0C0C0C]/95"
-              }
-              icon={<Terminal className="w-4 h-4 text-white" />}
-              heightClass="h-[295px] sm:h-[336px]"
-              techCode={`[Client: React + UI] <---> [Backend: REST / Node.js] <---> [DB / Docker]`}
-            />
-          </div>
-        </div>
-
-        {/* Features bullet points */}
-        <div className="mt-4 pt-3 border-t border-[#D7E2EA]/10 flex flex-wrap gap-x-6 gap-y-1 text-[11px] sm:text-xs font-mono text-[#D7E2EA]/60">
-          {project.features.map((feat, fIdx) => (
-            <span key={fIdx} className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#B600A8]" />
-              {feat}
-            </span>
-          ))}
         </div>
       </motion.div>
     </div>

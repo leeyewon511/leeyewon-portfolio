@@ -59,20 +59,34 @@ export const MarqueeSection: React.FC = () => {
             transition: "transform 0.08s linear"
           }}
         >
-          {row1Tripled.map((url, i) => (
-            <div
-              key={`r1-${i}`}
-              className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[420px] h-[190px] sm:h-[230px] md:h-[270px] rounded-2xl overflow-hidden border border-[#D7E2EA]/10 bg-[#15161A] group"
-            >
-              <img
-                src={url}
-                alt={`Portfolio dynamic visual ${i}`}
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-          ))}
+          {row1Tripled.map((url, i) => {
+            const isVideo = /\.(mp4|webm|mov)$/i.test(url);
+            return (
+              <div
+                key={`r1-${i}`}
+                className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[420px] h-[190px] sm:h-[230px] md:h-[270px] rounded-2xl overflow-hidden border border-[#D7E2EA]/10 bg-[#15161A] group relative"
+              >
+                {isVideo ? (
+                  <video
+                    src={encodeURI(url)}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={encodeURI(url)}
+                    alt={`Portfolio dynamic visual ${i}`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Row 2: Moves LEFT on scroll */}
@@ -83,20 +97,34 @@ export const MarqueeSection: React.FC = () => {
             transition: "transform 0.08s linear"
           }}
         >
-          {row2Tripled.map((url, i) => (
-            <div
-              key={`r2-${i}`}
-              className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[420px] h-[190px] sm:h-[230px] md:h-[270px] rounded-2xl overflow-hidden border border-[#D7E2EA]/10 bg-[#15161A] group"
-            >
-              <img
-                src={url}
-                alt={`Portfolio dynamic visual ${i}`}
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-          ))}
+          {row2Tripled.map((url, i) => {
+            const isVideo = /\.(mp4|webm|mov)$/i.test(url);
+            return (
+              <div
+                key={`r2-${i}`}
+                className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[420px] h-[190px] sm:h-[230px] md:h-[270px] rounded-2xl overflow-hidden border border-[#D7E2EA]/10 bg-[#15161A] group relative"
+              >
+                {isVideo ? (
+                  <video
+                    src={encodeURI(url)}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={url}
+                    alt={`Portfolio dynamic visual ${i}`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

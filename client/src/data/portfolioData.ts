@@ -25,18 +25,18 @@ export const PROFILE_INFO = {
   heroPortrait: "/manus-storage/lee-yewon-character_53f23ec1.png",
   aboutKoreanIntro: `안녕하세요, 웹 개발을 공부하고 있는 대학생 이예원(Lee Yewon)입니다.
 
-React를 활용한 프론트엔드 개발에 관심이 많고, 사용자가 편하게 사용할 수 있는 화면과 인터랙션을 만드는 과정을 좋아합니다.
+React를 활용해 직관적이고 인터랙티브한 사용자 인터페이스를 구현하는 것부터, Node.js와 Express를 기반으로 안정적인 REST API 서버와 비즈니스 로직을 설계하는 풀스택 개발에 깊은 관심을 두고 있습니다.
 
-Node.js와 Java로 간단한 서버와 API를 만들어 보았으며, MySQL, MariaDB, SQLite를 사용한 데이터베이스 관리도 경험했습니다. Docker와 JWT 인증을 학습하고 개인 프로젝트에 적용해 보면서 조금씩 개발의 범위를 넓혀가고 있습니다.
+MySQL 데이터베이스를 활용한 효율적인 스키마 모델링과 쿼리 최적화, Docker 기반의 컨테이너 환경 구축 및 JWT 인증을 프로젝트에 직접 적용하며 프론트엔드와 백엔드를 아우르는 데이터 흐름 제어 역량을 키워왔습니다.
 
 아직 배우는 과정에 있지만, 새로운 기술을 직접 시도하고 프로젝트를 완성해 가는 개발자가 되기 위해 꾸준히 공부하고 있습니다.`,
   aboutEnglishIntro: `Hello, I am Lee Yewon, a university student studying web development.
 
-I have a strong interest in frontend development using React, and I enjoy crafting intuitive interfaces and subtle interactions that enhance user experiences.
+I have a strong passion for full-stack web development—from crafting intuitive, interactive user interfaces with React to designing robust RESTful API servers and scalable business logic using Node.js and Express.
 
-I have built simple servers and APIs using Node.js and Java, managed data with MySQL, MariaDB, and SQLite, and broadened my technical scope by applying Docker and JWT authentication in personal projects.
+Through hands-on project experience, I have honed my ability to manage end-to-end data flow across both client and server environments. This includes designing efficient relational schemas and optimizing queries with MySQL, containerizing applications with Docker, and implementing secure JWT-based authentication.
 
-While still on my learning journey, I consistently strive to explore new technologies, build meaningful projects, and grow as a versatile developer.`
+While I am continuously growing, I remain dedicated to expanding my engineering skillset—eagerly adopting emerging technologies and seeing every project through to completion with high standards of quality.`
 };
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
@@ -190,22 +190,22 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 ];
 
 export const MARQUEE_GIFS = [
-  "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
-  "https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif",
-  "https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif",
-  "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
-  "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
-  "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif",
-  "https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif",
+  "/videos/학습된 SO101_실행.mp4",
+  "/videos/로봇팔 가상환경 학습 테스트.mp4",
+  "/videos/리더암-팔로워암 연동 영상.mp4",
+  "/videos/DB 연동 및 백엔드 로직 영상.mp4",
+  "/videos/중고거래 사이트 ui 분석.mp4",
+  "/videos/아이데이션 모델링_스토리보드.mp4",
+  "/videos/아이데이션융합실습_판넬.png",
   "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
-  "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
-  "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
-  "https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif",
-  "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif",
+  "/videos/award-ai-contest.png",
+  "/videos/cinema-booking-backend.mp4",
+  "/videos/영화관 예배 백엔드 로직.mp4",
+  "/videos/DB 연동 및 백엔드 로직 영상.mp4",
   "https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif",
-  "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
-  "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
-  "https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif",
+  "/videos/알맹 회원가입 영상.mp4",
+  "/videos/integrated-data-demo.mp4",
+  "/videos/소개실 캡스톤_20240847이예원.mp4",
   "https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif",
   "https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif",
   "https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif",

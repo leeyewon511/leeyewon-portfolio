@@ -37,7 +37,8 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = ""
   const containerRef = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 0.85", "end 0.25"]
+    // 글이 화면 중앙(center 0.5) 쯤에 도달했을 때 100% 완성(모두 흰색)되도록 offset 조정
+    offset: ["start 0.85", "center 0.52"]
   });
 
   const characters = Array.from(text);
