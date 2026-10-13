@@ -50,7 +50,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
               {PROFILE_INFO.tagline}
             </p>
             <div className="mt-1.5 text-[10px] sm:text-xs text-[#D7E2EA]/60 font-mono">
-              [ React · Node.js · Java · MySQL · Docker · JWT ]
+              [ React · Node.js · MySQL · Docker · JWT ]
             </div>
           </div>
         </FadeIn>

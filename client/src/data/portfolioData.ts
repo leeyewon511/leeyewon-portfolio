@@ -87,12 +87,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         description: "Express 기반 RESTful API 엔드포인트 설계, 미들웨어 구성 및 비동기 이벤트 핸들링"
       },
       {
-        name: "Java",
-        level: "Object-Oriented",
-        badge: "Backend Core",
-        description: "객체지향 구조를 바탕으로 간단한 비즈니스 로직과 서버 구조를 만들어 보는 연습"
-      },
-      {
         name: "JWT (JSON Web Token)",
         level: "Auth & Security",
         badge: "Bearer Auth",
@@ -114,16 +108,10 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         description: "테이블 정규화, 외래키 관계 정의, 인덱싱 및 대용량 트랜잭션 무결성 관리"
       },
       {
-        name: "MariaDB",
-        level: "Open Source RDBMS",
-        badge: "High Performance",
-        description: "MySQL 호환 엔진 기반의 스키마 마이그레이션, 쿼리 작성 및 데이터 핸들링"
-      },
-      {
-        name: "SQLite",
-        level: "Embedded DB",
-        badge: "Zero-Config",
-        description: "로컬 파일 기반 가벼운 스토리지 구축, 인메모리 캐싱 및 프로토타이핑 데이터 관리"
+        name: "MongoDB",
+        level: "NoSQL Document DB",
+        badge: "NoSQL DB",
+        description: "JSON/BSON 기반 비정형 문서 모델링, 컬렉션 구조 설계 및 CRUD 데이터 핸들링"
       }
     ]
   },
@@ -276,11 +264,11 @@ export const PROJECTS_DATA: ProjectItem[] = [
     number: "03",
     name: "Solaris Data Management Engine",
     category: "Backend & Database",
-    summary: "Java와 Node.js, MariaDB와 SQLite를 사용해 데이터 흐름을 연습한 개인 프로젝트",
-    techStack: ["Java", "Node.js", "MariaDB", "SQLite", "Docker", "Git/GitHub"],
+    summary: "Node.js, Express, MySQL과 MongoDB를 사용해 데이터 흐름을 연습한 개인 프로젝트",
+    techStack: ["Node.js", "Express", "MySQL", "MongoDB", "Docker", "Git/GitHub"],
     features: [
-      "MariaDB의 기본 SQL 쿼리와 SQLite 로컬 데이터 저장 방식 연습",
-      "Java 객체지향 구조와 Node.js REST API 구성 학습",
+      "MySQL 관계형 스키마 및 MongoDB 문서형 데이터 모델링 연습",
+      "Node.js 및 Express REST API 구성 및 데이터 핸들링 학습",
       "Git과 GitHub를 활용한 버전 관리 및 작업 기록"
     ],
     githubUrl: "https://github.com",

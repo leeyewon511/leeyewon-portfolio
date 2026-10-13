@@ -159,7 +159,6 @@ export const ACTIVITY_PERIODS: ActivityPeriod[] = [
         date: "2026.03.27 ~ 2026.05.31",
         title: "진로 성장프로그램 동서리더스클럽(DLC)",
         category: "Programs & Learning",
-        role: "진로성장프로그램",
         description: "관심 분야별 자율 스터디를 통한 진로 탐색, IT·SW 취업 정보 공유 및 커리어 역량 강화 활동 수행",
       },
       // 2026.03.25 ~ 2026.06.10
@@ -268,7 +267,6 @@ export const ACTIVITY_PERIODS: ActivityPeriod[] = [
         date: "2025.11 ~ 2025.12",
         title: "수업출결관리 프로젝트",
         category: "Competitions & Projects",
-        role: "출결 기능 구현",
         description:
           "React 기반으로 컴포넌트 UI를 설계하고 학생 출결 등록·조회 및 상태 관리 기능을 갖춘 웹 프로젝트 제작",
       },
@@ -329,7 +327,6 @@ export const ACTIVITY_PERIODS: ActivityPeriod[] = [
         date: "2025.04 ~ 2025.05",
         title: "네이버 블로그 관리 팀프로젝트",
         category: "Competitions & Projects",
-        role: "팀 프로젝트",
         description: "HTML/CSS/JS 기반 네이버 블로그 벤치마킹 프로젝트 및 CRUD 관리 기능 구현",
       },
     ],

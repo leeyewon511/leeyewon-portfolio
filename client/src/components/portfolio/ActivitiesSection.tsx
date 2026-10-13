@@ -23,7 +23,7 @@ export const ActivitiesSection: React.FC = () => {
           <h2 className="mt-3 text-[clamp(3rem,8vw,7rem)] font-semibold uppercase leading-[0.88] tracking-[-0.08em] text-[#D7E2EA]">Experience</h2>
         </FadeIn>
         <FadeIn delay={0.14} y={16}>
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-[#D7E2EA]/60 sm:text-base">학기와 방학을 원형 타임라인으로 정리했습니다. 각 시기의 활동과 역할을 확인해 보세요.</p>
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-[#D7E2EA]/60 sm:text-base">학기와 방학을 타임라인으로 정리했습니다.</p>
         </FadeIn>
 
         <div className="relative mt-16 sm:mt-20">

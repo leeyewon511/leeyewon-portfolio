@@ -170,8 +170,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
               </h4>
               <p className="text-xs text-[#D7E2EA]/70 leading-normal">
                 {lang === "ko"
-                  ? "Node.js와 Java로 간단한 서버와 REST API를 만들고, JWT 인증 흐름을 학습했습니다."
-                  : "Building servers and REST APIs with Node.js and Java, understanding secure JWT authentication flows."}
+                  ? "Node.js와 Express로 서버와 REST API를 만들고, JWT 인증 흐름을 학습했습니다."
+                  : "Building servers and REST APIs with Node.js and Express, understanding secure JWT authentication flows."}
               </p>
             </div>
 
@@ -184,8 +184,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
               </h4>
               <p className="text-xs text-[#D7E2EA]/70 leading-normal">
                 {lang === "ko"
-                  ? "MySQL, MariaDB, SQLite를 사용해 보고 Docker와 Vercel 배포도 직접 연습했습니다."
-                  : "Practicing database management with MySQL, MariaDB, and SQLite, alongside Docker and Vercel deployments."}
+                  ? "MySQL, MongoDB를 사용해 보고 Docker와 Vercel 배포도 직접 연습했습니다."
+                  : "Practicing database management with MySQL and MongoDB, alongside Docker and Vercel deployments."}
               </p>
             </div>
           </div>

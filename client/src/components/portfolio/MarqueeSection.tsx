@@ -41,15 +41,6 @@ export const MarqueeSection: React.FC = () => {
       ref={sectionRef}
       className="relative w-full bg-[#0C0C0C] pt-20 sm:pt-28 md:pt-36 pb-12 overflow-hidden select-none"
     >
-      <div className="mb-6 px-6 md:px-12 flex items-center justify-between">
-        <span className="text-xs uppercase font-mono tracking-widest text-[#D7E2EA]/50">
-          // Dynamic Visual Feed & Interactive Work
-        </span>
-        <span className="text-xs font-mono text-[#D7E2EA]/40">
-          Scroll-Driven Velocity
-        </span>
-      </div>
-
       <div className="flex flex-col gap-3">
         {/* Row 1: Moves RIGHT on scroll */}
         <div
