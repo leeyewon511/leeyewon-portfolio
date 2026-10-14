@@ -53,48 +53,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModalOpen, set
 
   return (
     <>
-      <footer id="contact" className="relative w-full bg-[#080808] border-t border-[#D7E2EA]/10 pt-20 pb-12 px-6 md:px-12 select-none">
+      <footer id="contact" className="relative w-full bg-[#080808] border-t border-[#D7E2EA]/10 py-10 px-6 md:px-12 select-none">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
-          <FadeIn delay={0} y={20}>
-            <span className="text-xs uppercase font-mono tracking-widest text-[#B600A8] bg-[#B600A8]/10 px-3.5 py-1 rounded-full mb-4 inline-block font-medium">
-              Start A Conversation
-            </span>
-          </FadeIn>
-
-          <FadeIn delay={0.1} y={30}>
-            <h2 className="hero-heading font-black uppercase tracking-tight text-[clamp(2.5rem,8vw,100px)] leading-tight">
-              Let&apos;s Build Together
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.2} y={20}>
-            <p className="mt-4 max-w-xl text-xs sm:text-sm md:text-base text-[#D7E2EA]/70 font-normal leading-relaxed">
-              새로운 프로젝트 제안, 프론트/백엔드 개발 포지션 논의 또는 기술적인 대화는 언제든 환영합니다.
-              아래 이메일이나 메시지 모달을 통해 편하게 연락주세요!
-            </p>
-          </FadeIn>
-
-          {/* Quick Actions */}
-          <FadeIn delay={0.3} y={20} className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="contact-button-gradient rounded-full text-white font-medium uppercase tracking-widest px-8 py-3.5 text-xs sm:text-sm flex items-center gap-2 hover:scale-105 active:scale-95 transition-all cursor-pointer"
-            >
-              <Send className="w-4 h-4" />
-              <span>Send Message</span>
-            </button>
-
-            <button
-              onClick={handleCopyEmail}
-              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/20 bg-[#121316] px-6 py-3 text-xs sm:text-sm text-[#D7E2EA] hover:border-[#B600A8] hover:text-white transition-all cursor-pointer"
-            >
-              {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
-              <span className="font-mono">{PROFILE_INFO.email}</span>
-            </button>
-          </FadeIn>
-
           {/* Social Links & Stack Badges */}
-          <FadeIn delay={0.4} y={20} className="mt-14 pt-8 border-t border-[#D7E2EA]/10 w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#D7E2EA]/50">
+          <FadeIn delay={0.1} y={10} className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#D7E2EA]/50">
             <div className="flex items-center gap-4">
               <span>© {new Date().getFullYear()} {PROFILE_INFO.nameKorean} ({PROFILE_INFO.nameEnglish})</span>
               <span>·</span>
@@ -111,12 +73,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModalOpen, set
                 <Github className="w-4 h-4" />
                 <span>GitHub</span>
               </a>
-              <span className="hover:text-white transition-colors cursor-pointer" onClick={() => toast.info("Figma 워크스페이스 연동 준비 중입니다.")}>
-                <span className="flex items-center gap-1.5">
-                  <Figma className="w-4 h-4" />
-                  <span>Figma</span>
-                </span>
-              </span>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 className="hover:text-white transition-colors uppercase tracking-wider"

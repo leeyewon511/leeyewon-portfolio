@@ -126,7 +126,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
         </FadeIn>
 
         {/* Animated Paragraph with character-by-character scroll reveal */}
-        <div className="max-w-[620px] text-[#D7E2EA] font-normal leading-relaxed text-[clamp(0.95rem,1.8vw,1.25rem)] my-4 text-center">
+        <div className="max-w-[680px] sm:max-w-[720px] text-[#D7E2EA] font-normal leading-relaxed text-[clamp(0.95rem,1.8vw,1.25rem)] my-4 text-center break-keep">
           <motion.div
             key={lang}
             initial={{ opacity: 0, y: 12 }}

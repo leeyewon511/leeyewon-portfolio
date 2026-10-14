@@ -82,20 +82,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
           >
             Projects
           </a>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              if (onContactClick) {
-                e.preventDefault();
-                onContactClick();
-              } else {
-                handleNavClick(e, "contact");
-              }
-            }}
-            className="text-white bg-[#B600A8]/20 hover:bg-[#B600A8]/40 border border-[#B600A8]/50 px-3 py-1 rounded-full text-xs font-mono transition-all cursor-pointer"
-          >
-            Contact
-          </a>
         </nav>
       </div>
     </header>

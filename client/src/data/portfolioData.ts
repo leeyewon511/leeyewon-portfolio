@@ -25,11 +25,11 @@ export const PROFILE_INFO = {
   heroPortrait: "/manus-storage/lee-yewon-character_53f23ec1.png",
   aboutKoreanIntro: `안녕하세요, 웹 개발을 공부하고 있는 대학생 이예원(Lee Yewon)입니다.
 
-React를 활용해 직관적이고 인터랙티브한 사용자 인터페이스를 구현하는 것부터, Node.js와 Express를 기반으로 안정적인 REST API 서버와 비즈니스 로직을 설계하는 풀스택 개발에 깊은 관심을 두고 있습니다.
+React를 활용해 직관적인 사용자 인터페이스를 만들고, Node.js와 Express 기반의 REST API 서버 및 비즈니스 로직을 구현하는 개발에 관심이 많습니다.
 
-MySQL 데이터베이스를 활용한 효율적인 스키마 모델링과 쿼리 최적화, Docker 기반의 컨테이너 환경 구축 및 JWT 인증을 프로젝트에 직접 적용하며 프론트엔드와 백엔드를 아우르는 데이터 흐름 제어 역량을 키워왔습니다.
+MySQL과 MongoDB를 활용한 데이터 모델링, Docker를 통한 컨테이너 환경 구축과 JWT 사용자 인증을 프로젝트에 직접 적용하며 프론트엔드와 백엔드를 아우르는 실전 역량을 키워왔습니다.
 
-아직 배우는 과정에 있지만, 새로운 기술을 직접 시도하고 프로젝트를 완성해 가는 개발자가 되기 위해 꾸준히 공부하고 있습니다.`,
+아직 배우는 과정에 있지만, 새로운 기술을 능동적으로 학습하고 끝까지 완성도 있게 구현해 내는 개발자가 되기 위해 꾸준히 노력하고 있습니다.`,
   aboutEnglishIntro: `Hello, I am Lee Yewon, a university student studying web development.
 
 I have a strong passion for full-stack web development—from crafting intuitive, interactive user interfaces with React to designing robust RESTful API servers and scalable business logic using Node.js and Express.
