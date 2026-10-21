@@ -150,7 +150,7 @@ export const ACTIVITY_PERIODS: ActivityPeriod[] = [
         title: "AI이해와활용 AI·SW 튜터링",
         category: "Mentoring & Leadership",
         role: "멘토",
-        description: "활동 내용 작성 예정",
+        description: "'AI 이해와 활용' 수강생 멘토링 (Python 기초 실습 및 AI 도구 활용 가이드)",
       },
       // 2026.03.27 ~ 2026.05.31
       {

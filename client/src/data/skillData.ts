@@ -68,7 +68,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     summary: "개발 환경을 구성하고 프로젝트를 실행·배포하는 흐름을 경험했습니다.",
     skills: [
       { name: "Docker", iconClass: "devicon-docker-plain colored", description: "컨테이너 기반 개발 환경을 구성해 보았습니다." },
-      { name: "Linux", iconClass: "devicon-linux-plain", description: "터미널 명령어와 기본적인 리눅스 환경을 사용했습니다." },
       { name: "Vercel", iconClass: "devicon-vercel-original", description: "GitHub 프로젝트를 연결해 배포하는 과정을 경험했습니다." },
     ],
   },
